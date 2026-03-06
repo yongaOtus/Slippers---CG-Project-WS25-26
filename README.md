@@ -8,4 +8,5 @@ Along with implementation of these features, we had to design and construct a sc
 Finally, we were expected to render our .xml file from our Blender scene using our own renderer and describe the process and the result in a website.
 
 site/slippers.html website further explains details and result of my project
+
 output.jpg is the output of my renderer for the scene .xml file.
