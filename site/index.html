@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Rendering Competition - Final Project</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<style>
+		/* --- CUSTOM CSS FIXES --- */
+
+		/* 1. MAIN RENDER BANNER */
+		/* Tall portrait mode (175vh) to fit the render */
+		#main-banner {
+			min-height: 175vh;
+			padding: 0;
+		}
+
+		#main-banner .image img {
+			object-fit: cover !important;
+			width: 100%;
+			height: 100%;
+		}
+
+		/* 2. LANDSCAPE BANNERS (References & Design Process) */
+		/* Shared styles for sections that stack text on top of a landscape image.
+           Removes forced height so they fit the image perfectly with no black spots. */
+		#reference-banner,
+		#process {
+			min-height: auto !important;
+			height: auto !important;
+			display: block;
+			/* Stacks content vertically */
+			padding: 0;
+			/* Let inner content handle padding */
+		}
+
+		#reference-banner .content,
+		#process .content {
+			width: 100%;
+			padding: 3rem 2rem;
+			text-align: center;
+			/* Centers the text above the image */
+			max-width: 1200px;
+			/* Prevents text from getting too wide */
+			margin: 0 auto;
+		}
+
+		#reference-banner .image,
+		#process .image {
+			position: relative;
+			width: 100%;
+			height: auto;
+			background-color: transparent;
+			margin: 0;
+			display: block;
+		}
+
+		#reference-banner .image img,
+		#process .image img {
+			position: relative;
+			width: 100%;
+			height: auto;
+			/* Image defines the height */
+			object-fit: contain;
+			/* Shows full image */
+			display: block;
+		}
+
+		/* 3. FEATURE SECTIONS (Alpha, Normal, etc.) */
+		/* Portrait mode (100vh) for 400x480 images */
+		.spotlight.style1 {
+			min-height: 100vh;
+		}
+
+		.spotlight.style1 .image {
+			background-color: transparent;
+		}
+
+		.spotlight.style1 .image img {
+			object-fit: cover !important;
+			width: 100%;
+			height: 100%;
+		}
+
+		/* 4. COMPARISON TOOL */
+		.comparison {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			cursor: crosshair;
+		}
+
+		.comparison img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover !important;
+			transition: opacity 0.4s ease-in-out;
+		}
+
+		.comparison img.after {
+			opacity: 0;
+			z-index: 2;
+		}
+
+		.comparison:hover img.after {
+			opacity: 1;
+		}
+
+		.hover-label {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			background: rgba(0, 0, 0, 0.6);
+			color: #fff;
+			padding: 5px 12px;
+			border-radius: 4px;
+			font-size: 0.8rem;
+			z-index: 10;
+			pointer-events: none;
+			backdrop-filter: blur(2px);
+		}
+	</style>
+</head>
+
+<body class="is-preload">
+
+	<div id="wrapper" class="divided">
+
+		<section id="main-banner"
+			class="banner style1 orient-left content-align-left image-position-right onload-image-fade-in onload-content-fade-right">
+			<div class="content">
+				<h1>Slippers</h1>
+				<p class="major">
+					<strong>Mustafa Oğuz Türk</strong>
+					<br><br>
+					<strong>Render Time:</strong> 6min 26s
+					<br><br>
+					<strong>Resolution:</strong> 1966 x 2925
+					<br><br>
+					Scene created in Blender, rendered using Lightwave Renderer.
+				</p>
+				<ul class="actions stacked">
+					<li><a href="#reference-banner" class="button big wide smooth-scroll-middle">View Details</a></li>
+				</ul>
+			</div>
+			<div class="image">
+				<img src="images/output.jpg" alt="Final Rendering" />
+			</div>
+		</section>
+
+		<section id="reference-banner" class="wrapper style1 align-center">
+			<div class="content">
+				<h2>Inspiration & Message</h2>
+				<p>As I was visiting the Modern Art Galery in Metz, one painting called 'Samuel's Slippers' from Henni
+					Alftan caught my eye.
+					It was part of the 'Copyists' Exhibition and like all other paintings in it, it was a copy.
+					A copy of 'Slippers' from Samuel van Hoogstraten, to be exact, though much simpler.
+					At first glance, it seemed very basic; yet after inspecting it, I felt a sense of coziness and
+					invitation conveyed through the doorway.
+					In that moment, I was inspired to render a similar scene that invokes such feelings: a space open to
+					interpretation, inviting the observer to step through and face the sun, be it as a
+					guest or the owner.
+				</p>
+				<ul class="actions special">
+					<li><a href="#process" class="button big wide smooth-scroll-middle">Design Process</a></li>
+				</ul>
+			</div>
+			<div class="image">
+				<img src="images/references.jpg" alt="Project References" />
+			</div>
+		</section>
+
+		<section id="process" class="wrapper style1 align-center">
+			<div class="content">
+				<h2>Design Process</h2>
+				<p>
+
+					<strong>Modelling:</strong>
+					<br><br>
+					As a concept, I planned to capture a balance between the simplicity of Alftan and the detailed depth
+					of Hoogstraten.
+					<br><br>
+					To start, I added the primary lighting with a direct source to create depth.
+					Using the Hoogstraten painting as a reference, I constructed the walls and positioned the slippers
+					to act as the scene's anchor, as seen in the first image below.
+					Next, I implemented the checkerboard floor. Although Lightwave supports procedural
+					checkerboards, the exporter limitation required me to handle this via Blender's shading editor as a
+					texture workaround. A view of the scene during this step can be seen in the second picture.
+					After modeling the door frames, I added a chair asset. I box-modeled the table and utilized
+					Blender's Cloth Simulation to drape the tablecloth naturally. I also used physics simulation to
+					create the hanging towel near the door.
+					To add final details, I integrated a book stack asset and created the a painting on the wall by
+					mapping a texture to a plane and I created the grid look on the middle floor using brick texture.
+					<br><br>
+					<strong>Variations & Challenges:</strong>
+					<br><br>
+					Lightwave Exporter was not fully compatible and I had to change some sections in the .xml file
+					manually every time I wanted to render the scene, causing the process to be time consuming.
+					<br><br>
+					I also experimented with different lighting setups, moving from a darker setup shown below to the
+					softer,
+					more ambient look.
+				</p>
+			</div>
+			<div class="image">
+				<img src="images/process.jpg" alt="Design Process and Intermediate Steps" />
+			</div>
+		</section>
+
+		<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in"
+			id="features">
+			<div class="content">
+				<h2>Alpha Masking</h2>
+				<p>Alpha masking is a feature that randomly dismisses
+					intersections based on the alpha channel of the texture.
+					To implement this feature I had to add m_alpha as a member of instance class in instance.hpp and I
+					had to apply some
+					changes to intersect and transmission function in instance.cpp. I changed the intersect function to
+					check for mean alpha and then decide randomly to skip the intersection if m_alpha was given. A
+					similar change was needed for transmittance function to control shadowing.
+					<br><br>
+					Realizing transmittance function had an effect on the m_alpha test results and then figuring out
+					how to change it was my biggest challenge. Intersect implementation was straightforward in
+					comparison.
+				</p>
+				<ul>
+					<li><strong>Before:</strong> Standard opaque rendering.</li>
+					<li><strong>After:</strong> Alpha texture applied.</li>
+				</ul>
+			</div>
+			<div class="image">
+				<div class="comparison">
+					<span class="hover-label">Hover to Compare</span>
+					<img src="images/alpha_raw.jpg" alt="Alpha Masking Off" />
+					<img src="images/alpha_map.jpg" class="after" alt="Alpha Masking On" />
+				</div>
+			</div>
+		</section>
+
+		<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+			<div class="content">
+				<h2>Normal Mapping</h2>
+				<p>Normal mapping is a feature to increase surface detail without increasing polygon count. To implement
+					this feature I had to add m_normal as a member of instance class in instance.hpp and I
+					had to apply some changes to transformFrame function in instance.cpp. I added a block that checks
+					and remaps the normals if m_normal is given.
+					<br><br>
+					I did not have a hard time implementing this feature, it was well explained in the project features
+					file.
+				</p>
+				<ul>
+					<li><strong>Before:</strong> Flat shading normal.</li>
+					<li><strong>After:</strong> Normal map applied.</li>
+				</ul>
+			</div>
+			<div class="image">
+				<div class="comparison">
+					<span class="hover-label">Hover to Compare</span>
+					<img src="images/normal_raw.jpg" alt="Normal Mapping Off" />
+					<img src="images/normal_map.jpg" class="after" alt="Normal Mapping On" />
+				</div>
+			</div>
+		</section>
+
+		<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+			<div class="content">
+				<h2>Rough Dielectric</h2>
+				<p> This feature allows for simulating complex materials
+					like frosted glass. I based my implementation on the paper linked in the project features file,
+					while also checking for similarities between this bsdf and rough conductor bsdf and dielectric bsdf,
+					that I implemented earlier. I have written a new roughdielectric.cpp file, including evaluate and
+					sample funcctions. It started by checking the vector directions to understand
+					if it was a reflection or refraction. Then, the result is calculated using the half vector and other
+					variables. Sampling was trickier, I sampled using the fresnel and weighing the probabilities just
+					like in dielectric bsdf. I had to try different conventions for vector and weight calculation since
+					there were inconsistenties between
+					the feautre description and the paper description. In the end I sticked with the paper formulas.</p>
+				<ul>
+					<li><strong>Shown:</strong> Frosty Glass using Rough Dielectric (denoised).</li>
+				</ul>
+			</div>
+			<div class="image">
+				<img src="images/dielectric_rough.jpg" alt="Rough Dielectric" />
+			</div>
+		</section>
+
+		<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+			<div class="content">
+				<h2>Denoising</h2>
+				<p>Denoising reduces the noise, resulting in a smooth image. For this feature, I had to add an albedo
+					variable to my aov integrator. For this integrator to work I had to add a getAlbedo function to
+					every bsdf implementatiion. Then I implemented the feature as a postprocess in denoise.cpp using the
+					OIDN guidelines.
+					<br><br>
+					Coding part was not complicated, however, linking the library in Windows and using it without errors
+					was a really big, time consuming challenge. After trying different methods and visiting tutorial
+					hours, a solution was found.
+				</p>
+				<ul>
+					<li><strong>Before:</strong> Raw Path Tracing Output.</li>
+					<li><strong>After:</strong> Denoised Output.</li>
+				</ul>
+			</div>
+			<div class="image">
+				<div class="comparison">
+					<span class="hover-label">Hover to Compare</span>
+					<img src="images/noisy.jpg" alt="Noisy Input" />
+					<img src="images/denoise.jpg" class="after" alt="Denoised Output" />
+				</div>
+			</div>
+		</section>
+
+		<section class="wrapper style1 align-center">
+			<div class="inner">
+				<h2>References & Attributions</h2>
+				<p>The following third-party assets and artistic references were used in the creation of this scene:</p>
+
+				<div style="text-align: left; max-width: 800px; margin: 0 auto;">
+					<h3>3D Assets</h3>
+					<ul>
+						<li><a href="https://sketchfab.com/3d-models/chair-c226b9e0cace4a20bf017b7061ada18d">Chair</a>
+							by shuvalov.di (Sketchfab)</li>
+						<li><a href="https://sketchfab.com/3d-models/book-stack-90944ea5739248f6b707d6c2b0955c3b">Book
+								Stack</a> by Paubr (Sketchfab)</li>
+						<li><a
+								href="https://sketchfab.com/3d-models/house-slippers-ac25fc96e7ff4c138d8503b1072b7ea3">Slippers</a>
+							by headless_christ (Sketchfab)</li>
+					</ul>
+
+					<h3>Artistic Inspiration</h3>
+					<ul>
+						<li>Slippers by <strong>Samuel van Hoogstratenis</strong></li>
+						<li>Samuel's Slippers by <strong>Henni Alftan</strong></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<footer class="wrapper style1 align-center">
+			<div class="inner">
+				<p>&copy; Mustafa Oğuz Türk. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			</div>
+		</footer>
+
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
